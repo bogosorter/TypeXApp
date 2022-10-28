@@ -1,7 +1,8 @@
 {
-  "name": "m7kra-boilerplate",
+  "name": "typex",
   "version": "0.3.0",
-  "description": "A boilerplate for simple apps following the design of Musicly",
+  "description": "Improve your typing speed",
+  "homepage": "m7kra.github.io/TypeX",
   "keywords": [
     "simple",
     "elegant",
@@ -10,11 +11,11 @@
     "electron"
   ],
   "bugs": {
-    "url": "https://github.com/m7kra/M7kraBoilerplate/issues"
+    "url": "https://github.com/m7kra/TypeXApp/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/m7kra/M7kraBoilerplate/git"
+    "url": "git+https://github.com/m7kra/TypeXApp/git"
   },
   "license": "MIT",
   "author": {
@@ -100,6 +101,7 @@
     "react-bootstrap-icons": "^1.9.1",
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.3.0",
+    "react-select": "^5.5.6",
     "sqlite": "^4.1.2"
   },
   "devDependencies": {
@@ -169,7 +171,7 @@
     "webpack-merge": "^5.8.0"
   },
   "build": {
-    "productName": "M7kraBoilerplate",
+    "productName": "TypeX",
     "asar": true,
     "asarUnpack": "**\\*.{node,dll}",
     "files": [
@@ -219,7 +221,7 @@
     "publish": {
       "provider": "github",
       "owner": "m7kra",
-      "repo": "M7kraBoilerplate"
+      "repo": "TypeXApp"
     }
   },
   "devEngines": {

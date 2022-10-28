@@ -3,6 +3,7 @@ import fs from 'fs';
 import { app } from 'electron';
 import path from 'path';
 import { platform } from 'os';
+import languages from './languages';
 
 const customCSSDirectory = path.join(app.getPath('userData'), 'css');
 const customCSSPath = path.join(app.getPath('userData'), 'css', 'custom.css');
@@ -21,7 +22,7 @@ export default class Settings {
      */
     static async get() {
         // Get the stored settings and decide whether to use the default ones
-        let definedSettings = await settings.get()
+        let definedSettings = await settings.get();
 
         // If last version is different than the current one, then the tutorial
         // should be shown
@@ -93,7 +94,13 @@ const defaultSettings = {
         name: 'Theme',
         type: 'select',
         options: ['light', 'dark'],
-        value: 'dark'
+        value: 'light'
+    },
+    language: {
+        name: 'Language',
+        type: 'select',
+        value: 'english',
+        options: languages
     },
     zoomFactor: {
         name: 'Zoom',

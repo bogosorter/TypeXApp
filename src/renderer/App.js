@@ -5,6 +5,7 @@ import { ContextMenu } from './Components/ContextMenu/ContextMenu';
 import SplashScreen from './Components/SplashScreen/SplashScreen';
 import Tutorial from './Components/Tutorial/Tutorial';
 import Logger from './Components/Logger/Logger';
+import TypeXContainer from './Components/TypeXContainer/TypeXContainer';
 
 import Controller from './Controller/Controller';
 import { useState, useMemo } from 'react';
@@ -56,8 +57,8 @@ export default function App() {
     return (
         <div id='app' className={settings.theme? settings.theme.value : 'dark'}>
             <Header view={view} />
-            {view == 'main'?
-                <Main /> :
+            {view == 'main' && settings != {}?
+                <TypeXContainer settings={settings} /> :
                 <Settings settings={settings} displayTutorial={() => setSettings({...settings, firstTime: true})} />
             }
             <ContextMenu />

@@ -1,7 +1,6 @@
 import CodeEditor from '@uiw/react-textarea-code-editor';
+import Select from 'react-select';
 
-import { useState } from 'react';
-import { useEffect } from 'react';
 import './setting.css';
 
 /**
@@ -11,55 +10,29 @@ import './setting.css';
  */
 export default function Setting({setting, modify}) {
 
-    function setValue(e) {
-        setting.value = e.target.value;
+    function setValue(value) {
+        setting.value = value;
         modify(setting);
     }
     
     // Render a select element
     if (setting.type == 'select') {
-        const options = setting.options.map((option, index) => {
-            return <option value={option} key={index}>{option}</option>
+
+        const options = setting.options.map(option => {
+            return { value: option, label: option };
         });
+        const value = { value: setting.value, label: setting.value };
 
         return (
             <>
                 <h3>{setting.name}</h3>
-                <select className='setting' onChange={setValue} value={setting.value}>
-                    {options}
-                </select>
-            </>
-        )
-    }
-
-    // Render a number input
-    else if (setting.type == 'number') {
-
-        const [value, setValue] = useState(setting.value);
-
-        // This type requires a different setValue function, because we don't
-        // want a string
-        function storeValue(e) {
-
-            let temp = e.target.value;
-            // Prevent using comma instead of dot
-            temp = temp.replace(',', '.');
-            
-            // If the user is still typing, don't store the new value
-            if (temp[temp.length - 1] == '.' || temp == '' || temp[0] == '-') {
-                setValue(temp);
-                return;
-            }
-
-            setValue(temp);
-            setting.value = parseFloat(temp);
-            modify(setting);
-        }
-
-        return (
-            <>
-                <h3>{setting.name}</h3>
-                <input className='setting' type='value' value={value} onChange={storeValue} />
+                <Select
+                    theme={selectTheme}
+                    styles={selectStyles}
+                    options={options}
+                    value={value}
+                    onChange={(e) => setValue(e.value)}
+                />
             </>
         )
     }
@@ -67,14 +40,9 @@ export default function Setting({setting, modify}) {
     // Render a switch for booleans
     else if (setting.type == 'bool') {
 
-        function setValue(e) {
-            setting.value = e.target.checked;
-            modify(setting);
-        }
-
         const swtch = (
             setting.value? <input className='form-check-input' type='checkbox' onChange={setValue} checked />
-            : <input className='form-check-input' type='checkbox' onChange={setValue} />
+            : <input className='form-check-input' type='checkbox' onChange={(e) => setValue(e.target.checked)} />
         )
 
         return (
@@ -92,7 +60,7 @@ export default function Setting({setting, modify}) {
         return (
             <>
                 <h3>{setting.name}</h3>
-                <input type='text' className='setting' value={setting.value} onChange={setValue} />
+                <input type='text' className='setting' value={setting.value} onChange={(e) => setValue(e.target.value)} />
             </>
         )
     }
@@ -117,9 +85,38 @@ export default function Setting({setting, modify}) {
             <>
                 <h3>{setting.name}</h3>
                 <div data-color-mode={window.settings.theme.value}>
-                    <CodeEditor value={setting.value} language={setting.language} onChange={storeValueAfterTimeout} onBlur={setValue} padding={15} />
+                    <CodeEditor value={setting.value} language={setting.language} onChange={storeValueAfterTimeout} onBlur={(e) => setValue(e.target.value)} padding={15} />
                 </div>
             </>
         )
     }
 }
+
+const selectStyles = {
+    option: (provided, state) => ({
+        ...provided,
+        color: state.isSelected ? 'var(--color)' : 'var(--color-05)',
+    })
+};
+
+const selectTheme = theme => ({
+    ...theme,
+    borderRadius: 'var(--border-radius)',
+    colors: {
+        ...theme.colors,
+        neutral0: 'var(--bg-color)',
+        neutral5: 'var(--color-005)',
+        neutral10: 'var(--color-01)',
+        neutral20: 'var(--color-02)',
+        neutral30: 'var(--color-03)',
+        neutral40: 'var(--color-04)',
+        neutral50: 'var(--color-05)',
+        neutral60: 'var(--color-07)',
+        neutral70: 'var(--color-08)',
+        neutral80: 'var(--color-09)',
+        neutral90: 'var(--color)',
+        primary: 'var(--color-02)',
+        primary25: 'var(--color-005)',
+        primary50: 'var(--color-01)',
+    }
+});

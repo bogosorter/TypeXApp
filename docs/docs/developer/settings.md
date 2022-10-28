@@ -69,14 +69,19 @@ const defaultSettings = {
         name: 'Theme',
         type: 'select',
         options: ['light', 'dark'],
-        value: 'dark'
+        value: 'light'
+    },
+    language: {
+        name: 'Language',
+        value: 'english',
+        options: languages
     },
     zoomFactor: {
         name: 'Zoom',
         type: 'select',
         options: ['0.7', '0.8', '0.9', '1', '1.2', '1.4', '1.6', '1.8'],
         value: platform() == 'win32'? '0.8' : '1'
-    },    
+    },
     customCSS: {
         name: 'Custom CSS',
         type: 'code',

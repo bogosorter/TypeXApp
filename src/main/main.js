@@ -51,7 +51,7 @@ let blockID;
 async function checkForUpdates() {
     try {
         return await versionCheck({
-            repo: 'M7kraBoilerplate',
+            repo: 'TypeXApp',
             owner: 'm7kra',
             currentVersion: app.getVersion(),
         });
@@ -72,7 +72,7 @@ process.on('uncaughtException', (err) => {
     const error = {
         type: 'error',
         title: 'An error occured',
-        message: 'Try to restart M7kraBoilerplate and, if the error persists, please contact me at https://github.com/m7kra/M7kraBoilerplate/issues or luiswbarbosa@gmail.com, with the following error: ' + err.message
+        message: 'Try to restart TypeX and, if the error persists, please contact me at https://github.com/m7kra/TypeXApp/issues or luiswbarbosa@gmail.com, with the following error: ' + err.message
     };
     dialog.showMessageBoxSync(error);
     app.exit(1);

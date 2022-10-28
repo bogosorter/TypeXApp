@@ -16,6 +16,11 @@
     border: 1px solid var(--color);
 }
 
+.select-setting, .select-setting * {
+    color: var(--color);
+    background-color: var(--bg-color);
+}
+
 .w-tc-editor {
     min-height: 100px;
     background-color: var(--bg-color);

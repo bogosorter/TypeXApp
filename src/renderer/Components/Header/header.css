@@ -1,11 +1,15 @@
 .header {
     padding: 5px;
     height: 8vh;
+    z-index: 1;
     -webkit-app-region: drag;
 }
 /* Button on header bar are not used to drag the window */
 .header > * > * {
     -webkit-app-region: no-drag;
+}
+.header * {
+    z-index: 1;
 }
 
 #control-button-container {
@@ -19,7 +23,7 @@
     align-items: center;
     justify-content: flex-start;
     white-space: nowrap;
-    background-color: rgba(0,0,0,0.2);
+    background-color: var(--color-01);
 }
 /* --container-width is set on the script */
 #control-button-container:hover {
