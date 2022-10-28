@@ -1,0 +1,6 @@
+[submodule "src/Components/TypeXCore"]
+	path = src/Components/TypeXCore
+	url = https://github.com/m7kra/TypeXCore.git
+[submodule "src/renderer/Components/TypeXCore"]
+	path = src/renderer/Components/TypeXCore
+	url = https://github.com/m7kra/TypeXCore.git
